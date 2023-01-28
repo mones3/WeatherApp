@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 Simple web-based weather forecast system written in HTML, CSS, and JavaScript using the APIs for fetching weather and geolocation information.
 
 API used in this program:
@@ -12,7 +12,6 @@ Pending Improvments:
 Adding city,state search to increase accuracy of API geolcation results.
 Include an icon to represent weather codes.
 Display weather up to 3 days.
-Secure API key
 
 
 
@@ -20,7 +19,6 @@ Secure API key
 
 
 
-=======
 # weatherApp
 Simple web-based weather forecast system 
->>>>>>> refs/remotes/origin/main
+
