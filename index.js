@@ -72,9 +72,9 @@ const fields = [
   "temperature",
   "temperatureApparent",
   "cloudCover",
-  "cloudBase",
-  "cloudCeiling",
-  "weatherCode",
+  //"cloudBase",
+  //"cloudCeiling",
+  "weatherCode"
 ];
 
 // choose the unit system, either metric or imperial
