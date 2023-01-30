@@ -5,6 +5,7 @@ import fetch from 'node-fetch';
 import queryString from 'query-string';
 import moment from 'moment';
 
+
 const app = express();
 const port = 3000;
 
@@ -71,9 +72,6 @@ const fields = [
   "windDirection",
   "temperature",
   "temperatureApparent",
-  "cloudCover",
-  //"cloudBase",
-  //"cloudCeiling",
   "weatherCode"
 ];
 
@@ -81,12 +79,12 @@ const fields = [
 const units = "imperial";
 
 // set the timesteps, like "current", "1h" and "1d"
-const timesteps = ["current"];
+const timesteps = ["1d"];
 
 // configure the time frame up to 6 hours back and 15 days out
 const now = moment.utc();
 const startTime = moment.utc(now).add(0, "minutes").toISOString();
-const endTime = moment.utc(now).add(1, "days").toISOString();
+const endTime = moment.utc(now).add(2, "days").toISOString();
 
 // specify the timezone, using standard IANA timezone format
 const timezone = "America/New_York";

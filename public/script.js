@@ -1,3 +1,4 @@
+
 //Need to add error check for city name
 console.log('script.js loaded');
 
@@ -38,22 +39,54 @@ async function fetchWeatherData() {
 
 /**
  * This function parses weather data retrieved from Tomorrow.io API
- * Displays data on to interface
+ * Displays data onto interface
  * @param {} weatherData the weather details of the city
  */
 function parseWeatherData(weatherData)
 {  
-    document.querySelector(".city").innerText = "Weather in " + locationUser;
-    document.querySelector(".temp").innerText = Math.floor(weatherData.data.timelines[0].intervals[0].values.temperature) + "°F";
-    document.querySelector(".wind").innerText = "Wind Speed: " + Math.floor(weatherData.data.timelines[0].intervals[0].values.windSpeed) + " mph";
-    document.querySelector(".cloud").innerText = "Cloud Coverage: " + weatherData.data.timelines[0].intervals[0].values.cloudCover + "%";
-    document.querySelector(".humidity").innerText = "Humidity: " + Math.floor(weatherData.data.timelines[0].intervals[0].values.humidity )+ "%";
-    
-    document.querySelector(".description").innerText = constructStatus(weatherData.data.timelines[0].intervals[0].values.weatherCode);
+  var today = new Date();
+  var tomorrow = new Date();
+  var tomorrowAfter = new Date();
+  var daylist = ["Sunday", "Monday", "Tuesday", "Wednesday ", "Thursday", "Friday", "Saturday"];
+
+  tomorrow.setDate(today.getDate() + 1);
+  tomorrowAfter.setDate(tomorrow.getDate() + 1);
   
-    document.querySelector(".weather").classList.remove("loading");
+  
+  document.querySelector(".city").innerText = "3-Day Weather Forecast for " + locationUser;
+  
+  //day 1 weather info
+  document.querySelector(".day").innerText = daylist[today.getDay()]
+  
+  const weatherDesc = constructStatus(weatherData.data.timelines[0].intervals[0].values.weatherCode);
+  document.querySelector(".temp").innerText = Math.floor(weatherData.data.timelines[0].intervals[0].values.temperature) + "°F";
+  document.querySelector(".weather-icon1").src = "icons/" + weatherDesc.toLowerCase().replace(/ /g, '_') + ".svg";
+  document.querySelector(".description").innerText = weatherDesc;
+  document.querySelector(".wind").innerText = "Wind Speed: " + Math.floor(weatherData.data.timelines[0].intervals[0].values.windSpeed) + " mph";
+  document.querySelector(".humidity").innerText = "Humidity: " + Math.floor(weatherData.data.timelines[0].intervals[0].values.humidity )+ "%";
+  
+  //day 2 weather info
+  document.querySelector(".dayTwo").innerText = daylist[tomorrow.getDay()];
+
+  const weatherDesc2 = constructStatus(weatherData.data.timelines[0].intervals[1].values.weatherCode);
+  document.querySelector(".weather-icon2").src = "icons/" + weatherDesc2.toLowerCase().replace(/ /g, '_') + ".svg";
+  document.querySelector(".temp2").innerText = Math.floor(weatherData.data.timelines[0].intervals[1].values.temperature) + "°F";
+  document.querySelector(".wind2").innerText = "Wind Speed: " + Math.floor(weatherData.data.timelines[0].intervals[1].values.windSpeed) + " mph";
+  document.querySelector(".humidity2").innerText = "Humidity: " + Math.floor(weatherData.data.timelines[0].intervals[1].values.humidity )+ "%";
+  document.querySelector(".description2").innerText = weatherDesc2;
+
+  //day 3 weather info
+  document.querySelector(".dayThree").innerText = daylist[tomorrowAfter.getDay()];
+
+  const weatherDesc3 = constructStatus(weatherData.data.timelines[0].intervals[2].values.weatherCode);
+  document.querySelector(".weather-icon3").src = "icons/" + weatherDesc3.toLowerCase().replace(/ /g, '_') + ".svg";
+  document.querySelector(".temp3").innerText = Math.floor(weatherData.data.timelines[0].intervals[2].values.temperature) + "°F";
+  document.querySelector(".wind3").innerText = "Wind Speed: " + Math.floor(weatherData.data.timelines[0].intervals[2].values.windSpeed) + " mph";
+  document.querySelector(".humidity3").innerText = "Humidity: " + Math.floor(weatherData.data.timelines[0].intervals[2].values.humidity )+ "%";
+  document.querySelector(".description3").innerText = weatherDesc3;
+
+  document.querySelector(".weather").classList.remove("loading");
    
-  
 }
 
 function constructStatus(weatherCode){
