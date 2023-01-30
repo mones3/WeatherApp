@@ -5,7 +5,6 @@ import fetch from 'node-fetch';
 import queryString from 'query-string';
 import moment from 'moment';
 
-
 const app = express();
 const port = 3000;
 
