@@ -45,14 +45,10 @@ async function fetchWeatherData() {
 function parseWeatherData(weatherData)
 {  
   var today = new Date();
-  var tomorrow = new Date();
-  var tomorrowAfter = new Date();
+  var tomorrow = addDays(today, 1);
+  var tomorrowAfter = addDays(today, 2);
   var daylist = ["Sunday", "Monday", "Tuesday", "Wednesday ", "Thursday", "Friday", "Saturday"];
 
-  tomorrow.setDate(today.getDate() + 1);
-  tomorrowAfter.setDate(tomorrow.getDate() + 1);
-  
-  
   document.querySelector(".city").innerText = "3-Day Weather Forecast for " + locationUser;
   
   //day 1 weather info
@@ -87,6 +83,15 @@ function parseWeatherData(weatherData)
 
   document.querySelector(".weather").classList.remove("loading");
    
+}
+
+/**
+ * Helper function to add days to the current data
+ * @param currentDate the current date
+ * @param days the number of days to be added to the current date
+ */
+function addDays(currentDate, days) {
+  return new Date(currentDate.getTime() + days*24*60*60*1000);
 }
 
 function constructStatus(weatherCode){
