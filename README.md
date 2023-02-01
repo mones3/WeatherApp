@@ -10,7 +10,7 @@ User enters the a city name and program will return that location's 3-day weathe
 Deployed to: https://mones3-weather-app.onrender.com
 
 Pending Improvments: 
-Adding city,state search to increase accuracy of API geolcation results.
+Adding city,state search to improve accuracy of API geolcation results.
 
 
 
